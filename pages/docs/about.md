@@ -42,12 +42,15 @@ The generated website was deployed to GitHub Pages at
 make deploy VERSION=...
 ```
 
-[README]:     README.md
-[Library]:    index.md
-[Agda-Pages About]:      https://pdmosses.github.io/agda-pages/About/
-[Agda-Pages User Guide]: https://pdmosses.github.io/agda-pages/User-Guide/
+[README]:                README/index.md
+[Library]:               index.md
+
+[Agda-Pages]:            https://pdmosses.github.io/agda-pages/default/
+[Agda-Pages About]:      https://pdmosses.github.io/agda-pages/default/About/
+[Agda-Pages User Guide]: https://pdmosses.github.io/agda-pages/default/User-Guide/
 [Agda-Pages README]:     https://github.com/pdmosses/agda-pages/blob/main/README.md
-[repository]:            https://github.com/pdmosses/agda-stdlib/
-[doc directory]:         https://github.com/pdmosses/agda-stdlib/tree/main/doc
-[pages directory]:       https://github.com/pdmosses/agda-stdlib/tree/main/pages
-[GenerateEverything.hs]: https://github.com/pdmosses/agda-stdlib/blob/main/GenerateEverything.hs
+
+[repository]:            https://github.com/pdmosses/agda-stdlib/tree/add-pages
+[doc directory]:         https://github.com/pdmosses/agda-stdlib/tree/add-pages/doc
+[pages directory]:       https://github.com/pdmosses/agda-stdlib/tree/add-pages/pages
+[GenerateEverything.hs]: https://github.com/pdmosses/agda-stdlib/blob/add-pages/GenerateEverything.hs
