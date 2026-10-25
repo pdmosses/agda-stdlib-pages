@@ -5,10 +5,9 @@ This repository supports generation of a prototype website listing the
 
 It uses **[Agda-Pages]** to generate a website with **module navigation**
 between **highlighted, hyperlinked listings** of Agda code. When deployed,
-the website displays a **version selector** on all pages.
-
-See the **[Agda-Pages About]** page for an overview of the features
-of the generated website.
+the website displays a **version selector** on all pages. See the
+**[Agda-Pages About]** page for an overview of further features of generated
+websites.
 
 > [!IMPORTANT]
 > Below, **`V`** stands for **`master`** or a version tag **`vX.Y`** of the library.
@@ -102,7 +101,7 @@ make serve
     more than 5 minutes the first time; subsequent calls take about 15 seconds.
 
 -   `make web` uses Agda to generate highlighted HTML from each source file,
-    and generates Markdown soources for webpages in `pages/docs/`. This takes
+    and generates Markdown sources for webpages in `pages/docs/`. This takes
     about one minute.
 
 -   `make serve` creates a local preview of the generated website at
@@ -137,8 +136,7 @@ make deploy VERSION=V
 ```
 
 The URL of the index page of the deployed version `V` is
-`https://USER.github.io/agda-stdlib/pages/V/`, where `USER` is your GitHub
-user name.
+`https://OWNER.github.io/agda-stdlib/pages/V/`.
 
 > [!TIP]
 > If the value of `VERSION` is set to `V` in the [Makefile], the `VERSION=V`
@@ -173,23 +171,18 @@ After pulling changes to the `master` branch of a fork of the
 Versions generated and deployed using previous releases of the present
 repository may be updated in the same way.
 
-[pages]:                pages/
-[agda-pages submodule]: pages/agda-pages/
-[docs]:                 pages/docs/
-[About.md]:             pages/docs/About.md
-[.nav.yml]:             pages/docs/.nav.yml
-[Makefile]:             pages/Makefile
-[properdocs.yml]:       pages/properdocs.yml
+[pages]:                  pages/
+[agda-pages submodule]:   pages/agda-pages/
+[docs]:                   pages/docs/
+[About.md]:               pages/docs/About.md
+[.nav.yml]:               pages/docs/.nav.yml
+[Makefile]:               pages/Makefile
+[properdocs.yml]:         pages/properdocs.yml
 
-[regenerate]: #website-generation
-[redeploy]:   #version-deployment
+[regenerate]:             #website-generation
+[redeploy]:               #version-deployment
 
-[Agda-Pages]:            https://pdmosses.github.io/agda-pages/default/
-[Agda-Pages About]:      https://pdmosses.github.io/agda-pages/default/About/
-[Agda-Pages User Guide]: https://pdmosses.github.io/agda-pages/default/User-Guide/
-[Agda-Pages repository]: https://github.com/pdmosses/agda-pages/
-[Agda-Pages README]:     https://github.com/pdmosses/agda-pages/blob/main/README.md
-[linkcheck]:             https://github.com/filiph/linkcheck/
-
-[Agda StdLib repository]: https://github.com/agda/agda-stdlib/
-[Agda StdLib website]:    https://agda.github.io/agda-stdlib/master/
+[Agda-Pages]:             https://pdmosses.github.io/agda-pages/default/
+[Agda-Pages About]:       https://pdmosses.github.io/agda-pages/default/About/
+[agda-pages repository]:  https://github.com/pdmosses/agda-pages/
+[agda-stdlib repository]: https://github.com/agda/agda-stdlib/
