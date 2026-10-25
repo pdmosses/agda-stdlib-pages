@@ -1,6 +1,7 @@
 INHERIT: ../../agda-pages/agda-pages.yml
 
-site_name: agda-stdlib-pages
+site_name: Agda Standard Library – Fork Pages
+
 site_url:  https://pdmosses.github.io/agda-stdlib/pages/
 repo_name: pdmosses/agda-stdlib
 repo_url:  https://github.com/pdmosses/agda-stdlib
@@ -13,4 +14,4 @@ plugins:
   - search
   - awesome-nav
   - mike:
-      deploy_prefix: 'nav'
+      deploy_prefix: 'pages'
