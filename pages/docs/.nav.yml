@@ -1,7 +1,5 @@
 nav:
-  - About:
-    - about.md
-    - Installation: installation-guide.md
+  - About: about.md
   - README/
   - Library:
     - index.md

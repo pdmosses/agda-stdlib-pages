@@ -2,7 +2,6 @@
 
 !!! info
     This ***prototype*** website lists the Agda Standard Library.[^fork]
-    This page is an update of the original [agda-stdlib issue].
 
 [^fork]:
     The website is generated from an [agda-stdlib fork], and might not include recent updates to
@@ -10,6 +9,8 @@
 
 Please report any [issues] with the website, including all relevant details. [Discussions]
 including queries, comments, and suggestions for improvement, are also welcome.
+
+The rest of this page is an update of the original [agda-stdlib issue].
 
 ## Background
 
@@ -85,15 +86,26 @@ This prototype website aims to address the above deficiencies:
 The prototype lists all Agda source files from the `master` branch and from some previous releases 
 of the Agda standard library.
 
-Each version of the website was generated manually, using files copied from the auxiliary
-[agda-stdlib-pages repository].
+Each version of the website was generated and deployed manually, using the [agda-pages repository]
+as a submodule, and files copied from the [agda-stdlib-pages repository].
+
+## Contact
+
+Peter Mosses
+
+[p.d.mosses@tudelft.nl]
+
+[pdmosses.github.io]
+
+[p.d.mosses@tudelft.nl]:        p.d.mosses@tudelft.nl
+[pdmosses.github.io]:           https://pdmosses.github.io
 
 [agda-stdlib fork]:             https://github.com/pdmosses/agda-stdlib/
 [issues]:                       https://github.com/pdmosses/agda-stdlib/issues
 [discussions]:                  https://github.com/pdmosses/agda-stdlib/discussions
 [agda-stdlib-pages repository]: https://github.com/pdmosses/agda-stdlib-pages/
+[agda-pages repository]:        https://github.com/pdmosses/agda-pages/
 
 [agda-stdlib issue]:            https://github.com/agda/agda-stdlib/issues/2893
 [agda-stdlib repository]:       https://github.com/agda/agda-stdlib/
 [agda-stdlib website]:          https://agda.github.io/agda-stdlib/
-

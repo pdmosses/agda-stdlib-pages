@@ -21,6 +21,10 @@ The installation commands are to be run from the **project root** directory.
 -   A clone/fork of the [agda-stdlib repository]
 -   Executables of all the dependencies of [Agda-Pages]
 
+> [!IMPORTANT]
+> The dependency [sd] has a breaking change in relation to v1.0.0.
+> If `sd` v1.1.0` is installed, set `SD = sd -A` in your `Makefile`.
+
 ### Create a branch for version `V`
 
 The webpages for each version `V` of the website are to be generated separately,
