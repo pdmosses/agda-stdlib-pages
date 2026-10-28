@@ -17,10 +17,9 @@ OWNER = $(patsubst %.git,%,$(shell git remote get-url origin))
 #
 # cd pages
 # make properdocs
-# make copy-html
-# make check
+# make copy-html  # instead of gen-html
 # make gen-md
-# make serve (for a local preview)
+# make serve      # for a local preview
 # make deploy VERSION=V
 
 # After testing, the above commands (omitting make serve) could be abbeviated to:
