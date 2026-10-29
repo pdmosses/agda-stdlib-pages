@@ -31,13 +31,17 @@ The webpages for each version `V` of the website are to be generated separately,
 using a fresh branch **`V-pages`** corresponding to the `V` version of the library.
 
 ```sh
-git checkout V
-git checkout -b V-pages
+git switch V
+git switch -c V-pages
 ```
 
 ### Copy the [pages] directory to the `V-pages` branch
 
-For example, clone this repository and copy the directory locally.
+For example, clone this repository and copy the pages directory locally:
+
+```sh
+cp -r PATH-TO-CLONE/agda-stdlib-pages/pages .
+```
 
 ### Add the [agda-pages repository] as a submodule
 
@@ -68,8 +72,8 @@ The root directory of the `V-pages` branch should now include:
 Website generation and deployment adds further files to the [pages] directory.
 
 > [!CAUTION]
-> By default, non-Markdown files in the `pages/docs` directory are included
-> when the generated website is deployed.
+> By default, any non-Markdown files added to the `pages/docs` directory are
+> *included* when the generated website is deployed.
 
 To update the `V-pages` branch to the latest changes to the [agda-pages repository]:
 
@@ -88,21 +92,14 @@ git submodule update --init --recursive
 
 ```sh
 cd pages
-make properdocs
-make index
-make check
-make web
+make properdocs # instead of make check
+make copy-html  # instead of make gen-html
+make gen-pages  # instead of make web
 make serve
 ```
 
 -   `make properdocs` sets the `site_name`, `repo_name`, and `repo_url` all 
     to refer to version `V`.
-
--   `make index` generates the source file for the library index, `index.agda`.
-    This involves a call of `cabal`.
-
--   `make check` loads all the Agda source files for the library. This may take
-    more than 5 minutes the first time; subsequent calls take about 15 seconds.
 
 -   `make web` uses Agda to generate highlighted HTML from each source file,
     and generates Markdown sources for webpages in `pages/docs/`. This takes
