@@ -11,20 +11,20 @@ BRANCH = $(shell git branch --show-current)
 
 REF = $(patsubst %-pages,%, $(BRANCH))
 
-OWNER = $(patsubst %.git,%,$(shell git remote get-url origin))
+OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell git remote get-url origin)))
 
 # Website generation for version V of agda-stdlib/pages:
 #
 # cd pages
-# make properdocs
-# make copy-html  # instead of gen-html
+# make properdocs # instead of make check
+# make copy-html  # instead of make gen-html
 # make gen-md
 # make serve      # for a local preview
 # make deploy VERSION=V
 
 # After testing, the above commands (omitting make serve) could be abbeviated to:
 # make agda-stdlib-pages VERSION=V
-
+# See https://stackoverflow.com/questions/5377297/how-to-manually-call-another-target-from-a-make-target/
 
 # Development versions:
 # master
@@ -53,20 +53,23 @@ OWNER = $(patsubst %.git,%,$(shell git remote get-url origin))
 
 # `make properdocs` updates properdocs.yml to refer to version V
 
+# Note: The same CSS is inherited from Agda-Pages for all versions,
+# for consistency of appearance when switching versions in the browser.
+
 .PHONY: properdocs
 properdocs:
-	@$(SD) '(site_url:[ ]+https://).*(.github.io/agda-stdlib/pages/).*$' \
-	       '$$1$(OWNER)$$2$(REF)/' properdocs.yml
-	@$(SD) '(repo_url:[ ]+https://github.com/).*(/agda-stdlib).*$' \
-	       '$$1$(OWNER)$$2/$(BRANCH)' properdocs.yml
-	@$(SD) '(repo_name:[ ]+).*(/agda-stdlib).*$' \
-	       '$$1$(OWNER)$$2@$(BRANCH)' properdocs.yml
+	@$(SD) '(site_url:[ ]+https://).*(.github.io/agda-stdlib/pages/).*$$' \
+	       '$${1}$(OWNER)$${2}$(REF)/' properdocs.yml
+	@$(SD) '(repo_url:[ ]+https://github.com/).*(/agda-stdlib).*$$' \
+	       '$${1}$(OWNER)$${2}/tree/$(BRANCH)' properdocs.yml
+	@$(SD) '(repo_name:[ ]+).*(/agda-stdlib).*$$' \
+	       '$${1}$(OWNER)$${2}@$(BRANCH)' properdocs.yml
 
 # `make copy-html` copies HTML files for version V from the gh-pages branch
 # of agda/agda-stdlib to temp, removing the tags around the body of each file.
 # The HTML files for the master version are at the root of the gh-pages branch.
 
-.PHONY copy-html
+.PHONY: copy-html
 copy-html: clean
 	@git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib temp/html
 	@[ "$(REF)" == "master" ] && dir=temp/html || dir=temp/html/$(REF); \
