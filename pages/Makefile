@@ -66,20 +66,16 @@ properdocs:
 	       '$${1}$(OWNER)$${2}@$(BRANCH)' properdocs.yml
 
 # `make copy-html` copies HTML files for version V from the gh-pages branch
-# of agda/agda-stdlib to temp, removing the tags around the body of each file.
+# of agda/agda-stdlib to html, removing the tags around the body of each file.
 # The HTML files for the master version are at the root of the gh-pages branch.
 
 .PHONY: copy-html
 copy-html: clean
-	@git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib temp/html
-	@[ "$(REF)" == "master" ] && dir=temp/html || dir=temp/html/$(REF); \
-	mv $${dir}/*.html temp; \
-	rm -rf temp/html; \
-	for file in temp/*.html; do \
-	    $(SD) '\A[.|\n]*?<body>'  '' $${file}; \
-	    $(SD) '</body>[.|\n]*?\z' '' $${file}; \
-	done
-	@echo "Generated HTML files in temp"
+	@git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib temp
+	@[ "$(REF)" == "master" ] && dir=temp || dir=temp/$(REF); \
+	mv $${dir}/*.html html; \
+	rm -rf temp; \
+	@echo "Generated HTML files in html"
 
-# `make gen-md` generates Markdown source files in docs from the HTML files in temp,
+# `make gen-md` generates Markdown source files in docs from the HTML files in html,
 # independently of the version V.
