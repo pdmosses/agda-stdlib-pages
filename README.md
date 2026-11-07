@@ -99,7 +99,7 @@ make serve
 ```
 
 -   `make properdocs` sets the `site_name`, `repo_name`, and `repo_url` values 
-    in `pages/properdocs.yml`..
+    in `pages/properdocs.yml`.
 
 -   `make copy-html` copies the HTML files for version `V` from the `gh-pages`
     branch of the upstream [agda-stdlib repository] to `pages/html/`.
