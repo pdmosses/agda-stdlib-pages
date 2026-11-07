@@ -2,8 +2,7 @@ SOURCES := ../. ../doc ../src
 PROTECT := docs/About.md
 SERVER := 8020
 
-AGDA-PAGES := ../../agda-pages
-include ../../agda-pages/agda-pages.mk
+include agda-pages/agda-pages.mk
 
 # Assuming BRANCH is V-pages, set REF to V
 
