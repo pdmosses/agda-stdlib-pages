@@ -35,6 +35,8 @@ git switch V --detach
 git switch -c V-pages
 ```
 
+Publish the `V-pages` branch on GitHub.
+
 ### Copy the [pages] directory to the `V-pages` branch
 
 For example, clone this repository and copy the pages directory locally:
@@ -46,7 +48,7 @@ cp -r PATH-TO-CLONE/agda-stdlib-pages/pages .
 ### Add the [agda-pages repository] as a submodule
 
 ```sh
-git submodule add https://github.com/pdmosses/agda-pages/ pages/agda-pages
+git submodule add --force https://github.com/pdmosses/agda-pages/ pages/agda-pages
 echo "\tbranch = main" >> .gitmodules
 git push
 ```
