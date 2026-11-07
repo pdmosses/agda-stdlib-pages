@@ -62,7 +62,7 @@ properdocs:
 	       '$${1}$(OWNER)$${2}' properdocs.yml
 	@$(SD) '(repo_url:[ ]+https://github.com/).*(/agda-stdlib).*$$' \
 	       '$${1}$(OWNER)$${2}/tree/$(BRANCH)' properdocs.yml
-	@$(SD) '(repo_name:[ ]+).*(/agda-stdlib).*$$' \
+	@$(SD) '(repo_name:[ ]+)(agda-stdlib).*$$' \
 	       '$${1}$${2}@$(BRANCH)' properdocs.yml
 
 # `make copy-html` copies HTML files for version V from the gh-pages branch
@@ -72,9 +72,8 @@ properdocs:
 .PHONY: copy-html
 copy-html: clean
 	@git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib temp
-	@[ "$(REF)" == "master" ] && dir=temp || dir=temp/$(REF); \
-	mkdir -p html && cp $${dir}/*.html html; \
-	rm -rf temp
+	@mkdir -p html && cp temp/$(REF)/*.html html
+	@rm -rf temp
 	@echo "Generated HTML files in html"
 
 # `make gen-pages` generates Markdown source files in docs from the HTML files
