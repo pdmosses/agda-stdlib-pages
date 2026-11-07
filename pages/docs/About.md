@@ -1,10 +1,10 @@
 # Agda-StdLib Pages
 
 !!! info
-    This ***prototype*** website lists the Agda Standard Library.[^fork]
+    This ***prototype*** website lists the Agda Standard Library.[^updates]
 
-[^fork]:
-    The website is generated from an [agda-stdlib fork], and might not include recent updates to
+[^updates]:
+    The `master` version of this website might not include recent updates to
     the `master` branch of the [agda-stdlib repository].
 
 Please report any [issues] with the website, including all relevant details. [Discussions]
@@ -81,7 +81,8 @@ This prototype website aims to address the above deficiencies:
     All pages provide a toggle to switch the current preference between light, dark, and
     automatic mode. The highlighting palette for dark mode differs from that used for light mode.
 
-6.  **Version switching:** All pages provide a version selector at the top.
+6.  **Version switching:**
+    All pages provide a version selector at the top.
 
 The prototype lists all Agda source files from the `master` branch and from some previous releases 
 of the Agda standard library.

@@ -18,7 +18,7 @@ OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell
 # cd pages
 # make properdocs # instead of make check
 # make copy-html  # instead of make gen-html
-# make gen-md
+# make gen-pages
 # make serve      # for a local preview
 # make deploy VERSION=V
 
@@ -58,24 +58,24 @@ OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell
 
 .PHONY: properdocs
 properdocs:
-	@$(SD) '(site_url:[ ]+https://).*(.github.io/agda-stdlib/pages/).*$$' \
-	       '$${1}$(OWNER)$${2}$(REF)/' properdocs.yml
+	@$(SD) '(site_url:[ ]+https://).*(.github.io/agda-stdlib/).*$$' \
+	       '$${1}$(OWNER)$${2}' properdocs.yml
 	@$(SD) '(repo_url:[ ]+https://github.com/).*(/agda-stdlib).*$$' \
 	       '$${1}$(OWNER)$${2}/tree/$(BRANCH)' properdocs.yml
 	@$(SD) '(repo_name:[ ]+).*(/agda-stdlib).*$$' \
-	       '$${1}$(OWNER)$${2}@$(BRANCH)' properdocs.yml
+	       '$${1}$${2}@$(BRANCH)' properdocs.yml
 
 # `make copy-html` copies HTML files for version V from the gh-pages branch
-# of agda/agda-stdlib to html, removing the tags around the body of each file.
-# The HTML files for the master version are at the root of the gh-pages branch.
+# of agda/agda-stdlib to html. The HTML files for the master version are at
+# the root of the gh-pages branch.
 
 .PHONY: copy-html
 copy-html: clean
 	@git clone --depth 1 --single-branch --branch gh-pages https://github.com/agda/agda-stdlib temp
 	@[ "$(REF)" == "master" ] && dir=temp || dir=temp/$(REF); \
-	mv $${dir}/*.html html; \
-	rm -rf temp; \
+	mkdir -p html && cp $${dir}/*.html html; \
+	rm -rf temp
 	@echo "Generated HTML files in html"
 
-# `make gen-md` generates Markdown source files in docs from the HTML files in html,
-# independently of the version V.
+# `make gen-pages` generates Markdown source files in docs from the HTML files
+# in html, independently of the version V.

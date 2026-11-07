@@ -31,7 +31,7 @@ The webpages for each version `V` of the website are to be generated separately,
 using a fresh branch **`V-pages`** corresponding to the `V` version of the library.
 
 ```sh
-git switch V
+git switch V --detach
 git switch -c V-pages
 ```
 
@@ -63,13 +63,13 @@ The root directory of the `V-pages` branch should now include:
     ├─  agda-pages/
     │   └─ ...
     ├─  docs/
-    │   ├─ About.md
-    │   └─ .nav.yml
+    │   ├─ .nav.yml
+    │   └─ About.md
     ├─  Makefile
     └─  properdocs.yml
 ```
 
-Website generation and deployment adds further files to the [pages] directory.
+Website generation and deployment add further files to the [pages] directory.
 
 > [!CAUTION]
 > By default, any non-Markdown files added to the `pages/docs` directory are
@@ -98,22 +98,32 @@ make gen-pages  # instead of make web
 make serve
 ```
 
--   `make properdocs` sets the `site_name`, `repo_name`, and `repo_url` all 
-    to refer to version `V`.
+-   `make properdocs` sets the `site_name`, `repo_name`, and `repo_url` values 
+    in `pages/properdocs.yml`..
 
--   `make web` uses Agda to generate highlighted HTML from each source file,
-    and generates Markdown sources for webpages in `pages/docs/`. This takes
-    about one minute.
+-   `make copy-html` copies the HTML files for version `V` from the `gh-pages`
+    branch of the upstream [agda-stdlib repository] to `pages/html/`.
+
+-   `make gen-pages` generates Markdown source files for webpages in
+    `pages/docs/` from the HTML files in `pages/html`.
 
 -   `make serve` creates a local preview of the generated website at
-    `http://localhost:SERVER`, where the port number `SERVER` is as set in the
-    `Makefile` (default: `8000`). This takes about one minute.
+    `http://localhost:SERVER/agda-stdlib/`, where the port number `SERVER` is
+    as set in the `Makefile` (default: `8000`).
     
 The preview does *not* include previously deployed versions of the website,
 nor do the pages display a version selector.
 
 ## Website deployment to GitHub Pages
 
+The generated website for each version of the library is deployed to the
+`pages` directory using the `gh-pages` branch.
+
+> [!WARNING]
+> If you push to the `master`, `experimental`, or any `v*-release` branch
+> of your fork, GitHub runs the actions in `.github/worflows/ci-ubuntu.yml`.
+> That overwrites the `gh-pages` branch in your fork and **removes** the
+> `pages` directory!
 
 ### Website initialisation
 
