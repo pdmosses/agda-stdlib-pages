@@ -56,13 +56,27 @@ OWNER = $(patsubst https://github.com/%,%,$(patsubst %/agda-stdlib.git,%,$(shell
 # for consistency of appearance when switching versions in the browser.
 
 .PHONY: properdocs
+export PROPERDOCS
 properdocs:
-	@$(SD) '(site_url:[ ]+https://).*(.github.io/agda-stdlib/).*$$' \
-	       '$${1}$(OWNER)$${2}' properdocs.yml
-	@$(SD) '(repo_url:[ ]+https://github.com/).*(/agda-stdlib).*$$' \
-	       '$${1}$(OWNER)$${2}/tree/$(BRANCH)' properdocs.yml
-	@$(SD) '(repo_name:[ ]+)(agda-stdlib).*$$' \
-	       '$${1}$${2}@$(BRANCH)' properdocs.yml
+	@echo "$${PROPERDOCS}" > properdocs.yml
+
+define PROPERDOCS
+INHERIT: agda-pages/agda-pages.yml
+
+site_name: Agda Standard Library – Prototype Pages
+
+site_url:  https://$(OWNER).github.io/agda-stdlib/
+repo_name: agda-stdlib@$(BRANCH)
+repo_url:  https://github.com/$(OWNER)/agda-stdlib/tree/$(BRANCH)
+
+extra:
+  version:
+    provider: mike
+
+plugins:
+  mike:
+    deploy_prefix: 'pages'
+endef
 
 # `make copy-html` copies HTML files for version V from the gh-pages branch
 # of agda/agda-stdlib to html. The HTML files for the master version are at

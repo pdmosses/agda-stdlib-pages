@@ -31,11 +31,9 @@ The webpages for each version `V` of the website are to be generated separately,
 using a fresh branch **`V-pages`** corresponding to the `V` version of the library.
 
 ```sh
-git switch V --detach
-git switch -c V-pages
+git checkout -b V-pages V --recurse-submodules
+git push -u origin V-pages
 ```
-
-Publish the `V-pages` branch on GitHub.
 
 ### Copy the [pages] directory to the `V-pages` branch
 
@@ -50,6 +48,8 @@ cp -r PATH-TO-CLONE/agda-stdlib-pages/pages .
 ```sh
 git submodule add --force https://github.com/pdmosses/agda-pages/ pages/agda-pages
 echo "\tbranch = main" >> .gitmodules
+git add .
+git commit -a -m 'Add pages'
 git push
 ```
 
@@ -67,11 +67,11 @@ The root directory of the `V-pages` branch should now include:
     ├─  docs/
     │   ├─ .nav.yml
     │   └─ About.md
-    ├─  Makefile
-    └─  properdocs.yml
+    └─  Makefile
 ```
 
-Website generation and deployment add further files to the [pages] directory.
+Website generation and deployment add further files to the [pages] directory,
+but they are not added to the repository on GitHub.
 
 > [!CAUTION]
 > By default, any non-Markdown files added to the `pages/docs` directory are
@@ -80,7 +80,7 @@ Website generation and deployment add further files to the [pages] directory.
 To update the `V-pages` branch to the latest changes to the [agda-pages repository]:
 
 ```sh
-git submodule update --remote
+git submodule update --remote --recurse-submodules
 ```
 
 If the `V-pages` branch is subsequently cloned, the submodule in the clone also
@@ -100,8 +100,7 @@ make gen-pages  # instead of make web
 make serve
 ```
 
--   `make properdocs` sets the `site_name`, `repo_name`, and `repo_url` values 
-    in `pages/properdocs.yml`.
+-   `make properdocs` adds `pages/properdocs.yml`.
 
 -   `make copy-html` copies the HTML files for version `V` from the `gh-pages`
     branch of the upstream [agda-stdlib repository] to `pages/html/`.
