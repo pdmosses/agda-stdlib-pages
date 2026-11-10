@@ -10,7 +10,7 @@ the website displays a **version selector** on all pages. See the
 websites.
 
 > [!IMPORTANT]
-> Below, **`V`** stands for **`master`** or a version tag **`vX.Y`** of the library.
+> Below, **`REF`** stands for **`master`** or a version tag **`vX.Y`** of the library.
 
 ## Installation
 
@@ -25,23 +25,26 @@ The installation commands are to be run from the **project root** directory.
 > The dependency [sd] has a breaking change in relation to v1.0.0.
 > If `sd` v1.1.0` is installed, set `SD = sd -A` in your `Makefile`.
 
-### Create a branch for version `V`
+### Create a branch for version `REF`
 
-The webpages for each version `V` of the website are to be generated separately,
-using a fresh branch **`V-pages`** corresponding to the `V` version of the library.
+The webpages for each version `REF` of the website are to be generated separately,
+using a fresh branch **`REF-pages`** corresponding to the `REF` version of the library.
 
 ```sh
-git checkout -b V-pages V --recurse-submodules
-git push -u origin V-pages
+git checkout -b REF-pages REF --recurse-submodules
+git push -u origin REF-pages
 ```
 
-### Copy the [pages] directory to the `V-pages` branch
+### Copy the [pages] directory to the `REF-pages` branch
 
 For example, clone this repository and copy the pages directory locally:
 
 ```sh
 cp -r PATH-TO-CLONE/agda-stdlib-pages/pages .
 ```
+
+> [!TIP]
+> Run `sh pages/REF-pages.sh` to execute the remaining steps automatically!
 
 ### Add the [agda-pages repository] as a submodule
 
@@ -57,7 +60,7 @@ git push
 > Appending `branch = main` to `.gitmodules` avoids potential confusion
 > when Git is looking for the default branch.
 
-The root directory of the `V-pages` branch should now include:
+The root directory of the `REF-pages` branch should now include:
 
 ```
 ├─  ...
@@ -77,13 +80,13 @@ but they are not added to the repository on GitHub.
 > By default, any non-Markdown files added to the `pages/docs` directory are
 > *included* when the generated website is deployed.
 
-To update the `V-pages` branch to the latest changes to the [agda-pages repository]:
+To update the `REF-pages` branch to the latest changes to the [agda-pages repository]:
 
 ```sh
-git submodule update --remote --recurse-submodules
+git submodule update --remote --recursive
 ```
 
-If the `V-pages` branch is subsequently cloned, the submodule in the clone also
+If the `REF-pages` branch is subsequently cloned, the submodule in the clone also
 has to be *initialised*:
 
 ```sh
@@ -102,7 +105,7 @@ make serve
 
 -   `make properdocs` adds `pages/properdocs.yml`.
 
--   `make copy-html` copies the HTML files for version `V` from the `gh-pages`
+-   `make copy-html` copies the HTML files for version `REF` from the `gh-pages`
     branch of the upstream [agda-stdlib repository] to `pages/html/`.
 
 -   `make gen-pages` generates Markdown source files for webpages in
@@ -140,31 +143,31 @@ make start-versioning
 
 ### Version deployment
 
-Deploy the generated website as version `V`:
+Deploy the generated website as version `REF`:
 
 ```sh
 cd pages
-make deploy VERSION=V
+make deploy VERSION=REF
 ```
 
-The URL of the index page of the deployed version `V` is
-`https://OWNER.github.io/agda-stdlib/pages/V/`.
+The URL of the index page of the deployed version `REF` is
+`https://OWNER.github.io/agda-stdlib/pages/REF/`.
 
 > [!TIP]
-> If the value of `VERSION` is set to `V` in the [Makefile], the `VERSION=V`
+> If the value of `VERSION` is set to `REF` in the [Makefile], the `VERSION=REF`
 > argument can be omitted in the `make` commands.
 
 ### Default version
 
-Set a **previously-deployed** version `V` as the `default` version of the
+Set a **previously-deployed** version `REF` as the `default` version of the
 generated website:
 
 ```sh
 cd pages
-make default VERSION=V
+make default VERSION=REF
 ```
 
-This deploys `default` as an alias for version `V`. It may take several minutes.
+This deploys `default` as an alias for version `REF`. It may take several minutes.
 
 It also redirects the URL `https://OWNER.github.io/agda-stdlib/pages/` of the
 website home page to the index page of the `default` version
